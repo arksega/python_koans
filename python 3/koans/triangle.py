@@ -18,9 +18,15 @@
 #
 def triangle(a, b, c):
     equal_sides = {a, b, c}
+    for side in equal_sides:
+        if side <= 0 :
+            raise TriangleError
     if len(equal_sides) == 1:
         return 'equilateral'
     if len(equal_sides) == 2:
+        if min(equal_sides) * 2 <= max(equal_sides) \
+                and [a, b, c].count(min(equal_sides)) > 1:
+            raise TriangleError
         return 'isosceles'
     if len(equal_sides) == 3:
         return 'scalene'
