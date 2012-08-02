@@ -33,6 +33,27 @@ from runner.koan import *
 # Your goal is to write the score method.
 
 def score(dice):
+    from collections import defaultdict
+    numbers = defaultdict(int)
+    points = 0
+    for n in dice:
+        numbers[n] += 1
+    for x in set(dice):
+        while numbers[x]:
+            if numbers[x] >= 3:
+                if x == 1:
+                    points += 1000
+                else:
+                    points += x * 100
+                numbers[x] -= 3
+            else:
+                if x == 5:
+                    points += 50
+                if x == 1:
+                    points += 100
+                numbers[x] -= 1
+    return points
+
     # You need to write this method
     pass
 
